@@ -1,5 +1,5 @@
 # These can be overidden with env vars.
-CLUSTER ?= se4sci
+CLUSTER ?= arvato
 
 .PHONY: help
 help: ## Display this help

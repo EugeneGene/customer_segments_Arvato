@@ -1,5 +1,5 @@
 {
-	"name": "Airbnb Data Analysis",
+	"name": "Arvato",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/app",
