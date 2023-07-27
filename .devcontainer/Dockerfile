@@ -32,6 +32,8 @@ RUN curl -o /tmp/miniconda.sh -O https://repo.anaconda.com/miniconda/Miniconda3-
     rm /tmp/miniconda.sh
 ENV PATH="/opt/conda/bin:$PATH"
 
+# Initialize Conda
+RUN conda init bash
 
 # Enable color terminal for docker exec bash
 ENV TERM=xterm-256color

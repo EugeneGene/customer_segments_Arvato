@@ -16,6 +16,12 @@ echo "**********************************************************************"
 curl -L -o devspace "https://github.com/loft-sh/devspace/releases/latest/download/devspace-linux-$ARCH"
 sudo install -c -m 0755 devspace /usr/local/bin
 
+# Add the conda init bash command here
+echo "**********************************************************************"
+echo "Initializing Conda for bash..."
+echo "**********************************************************************"
+conda init bash
+
 echo "**********************************************************************"
 echo "Installing K9s..."
 echo "**********************************************************************"
