@@ -104,3 +104,9 @@ ENV/
 .ropeproject
 
 # Exclude Large Data from repo
+
+# Exclude Private Data
+notebooks/AZDIAS_Feature_Summary.csv
+notebooks/Data_Dictionary.md
+notebooks/Udacity_AZDIAS_Subset.csv
+notebooks/Udacity_CUSTOMERS_Subset.csv
