@@ -32,11 +32,20 @@ RUN curl -o /tmp/miniconda.sh -O https://repo.anaconda.com/miniconda/Miniconda3-
     rm /tmp/miniconda.sh
 ENV PATH="/opt/conda/bin:$PATH"
 
-# Create Conda environment
-RUN conda create -n p39_arvato python=3.9
+# Create Conda environment and install necessary packages
+RUN conda create -n p39_arvato python=3.9 && \
+    conda install -n p39_arvato -c conda-forge jupyterlab && \
+    conda install -n p39_arvato -c anaconda jupyter && \
+    conda install -n p39_arvato -c conda-forge jupyter_contrib_nbextensions && \
+    conda install -n p39_arvato numpy pandas matplotlib seaborn && \
+    conda install -n p39_arvato -c anaconda scikit-learn
 
-# Activate the Conda environment
-SHELL ["conda", "run", "-n", "p39_arvato", "/bin/bash", "-c"]
+# # Activate the Conda environment
+# SHELL ["conda", "run", "-n", "p39_arvato", "/bin/bash", "-c"]
+
+# Set the entry point for your Gunicorn server
+CMD ["/opt/conda/envs/p39_arvato/bin/gunicorn", "service.app:app", "-b", "0.0.0.0:7080"]
+
 
 # Enable color terminal for docker exec bash
 ENV TERM=xterm-256color
@@ -47,10 +56,3 @@ USER $USERNAME
 # Install user mode tools
 COPY .devcontainer/scripts/install-tools.sh /tmp/
 RUN cd /tmp && bash ./install-tools.sh
-
-# Install the necessary packages using conda
-RUN conda install -c conda-forge jupyterlab && \
-    conda install -c anaconda jupyter && \
-    conda install -c conda-forge jupyter_contrib_nbextensions && \
-    conda install numpy pandas matplotlib seaborn && \
-    conda install -c anaconda scikit-learn
