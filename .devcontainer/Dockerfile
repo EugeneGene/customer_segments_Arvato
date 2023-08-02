@@ -41,6 +41,7 @@ RUN conda create -n p39_arvato python=3.9 && \
     conda install -n p39_arvato -c anaconda scikit-learn
 
 # # Activate the Conda environment
+# TODO: Test this line uncommented 
 # SHELL ["conda", "run", "-n", "p39_arvato", "/bin/bash", "-c"]
 
 # Set the entry point for your Gunicorn server
